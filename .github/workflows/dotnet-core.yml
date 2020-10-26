@@ -23,8 +23,8 @@ jobs:
       run: dotnet build --configuration Release --no-restore
     - name: Pack
       run: dotnet pack -c Release --include-symbols --include-source --version-suffix beta
-    - name: dotnet pack
-    - uses: actions/upload-artifact@v2
+    - name: Publish    
+      uses: actions/upload-artifact@v2
       with:
         name: NuGet Package (consul)
         path: dist/Consul*
