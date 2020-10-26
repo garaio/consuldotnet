@@ -21,5 +21,13 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Pack
-      run: dotnet pack -c Release --include-symbols --include-source --version-suffix beta
+            
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: dotnet pack
+      - uses: actions/upload-artifact@v2
+        with:
+          name: NuGet Package (consul)
+          path: dist/Consul*
